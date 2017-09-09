@@ -1,8 +1,9 @@
 package com.example.unibave.rest.service;
 
 import com.example.unibave.rest.model.Aluno;
-import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface AlunoService {
 
@@ -20,6 +21,6 @@ public interface AlunoService {
 
     void deleta(Long codigo);
 
-    List<Aluno> lista(String nome);
+    Page<Aluno> lista(Pageable pageable, String nome);
 
 }

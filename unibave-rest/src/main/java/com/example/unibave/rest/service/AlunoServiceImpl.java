@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import javax.inject.Inject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,11 +45,10 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public List<Aluno> lista(String nome) {
+    public Page<Aluno> lista(Pageable pageable, String nome) {
         return nome != null
-                ? repository.findByNomeContaining(nome)
-                : StreamSupport.stream(repository.findAll().spliterator(), false)
-                        .collect(Collectors.toList());
+                ? repository.findByNomeContaining(pageable, nome)
+                : repository.findAll(pageable);
     }
 
 }

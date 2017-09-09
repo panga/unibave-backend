@@ -4,6 +4,7 @@ import com.example.unibave.rest.model.Aluno;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -34,7 +35,11 @@ public interface AlunoResource {
     @Path(value = "{codigo}")
     Response deleta(@PathParam(value = "codigo") Long codigo);
 
-    @GET //url?nome=Joao
-    Response lista(@QueryParam("nome") String nome);
+    @GET
+    Response lista(@QueryParam("nome") String nome,
+            @QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("limit") @DefaultValue("10") int limit,
+            @QueryParam("sort") @DefaultValue("codigo") String sort,
+            @QueryParam("direction") @DefaultValue("asc") String direction);
 
 }

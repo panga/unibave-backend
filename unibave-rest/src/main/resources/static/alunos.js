@@ -33,7 +33,11 @@ app.controller('AlunosController', function($scope, AlunosResource) {
 
 app.factory("AlunosResource", function ($resource) {
     return $resource("/api/alunos/:codigo", {codigo: "@codigo"}, {
-        'update': {method: 'PUT'}
+        'update': {method: 'PUT'},
+        'query': {method: 'GET', isArray: true, transformResponse: function (response) {
+            response = angular.fromJson(response);
+            return response.content;
+        }}
     });
 });
 

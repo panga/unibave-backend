@@ -1,13 +1,14 @@
 package com.example.unibave.rest.repository;
 
 import com.example.unibave.rest.model.Aluno;
-import java.util.List;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlunoRepository 
-        extends CrudRepository<Aluno, Long> {
+        extends PagingAndSortingRepository<Aluno, Long> {
     
-    List<Aluno> findByNomeContaining(String nome);
+    Page<Aluno> findByNomeContaining(Pageable pageable, String nome);
 }
