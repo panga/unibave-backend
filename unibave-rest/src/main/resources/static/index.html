@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="alunos">
+    <head>
+        <title>Cadastro de Alunos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.min.js"></script>
+        <script src="alunos.js"></script>
+    </head>
+    <body ng-controller="AlunosController">
+        <div>
+            <h2>Cadastro de Alunos</h2>
+            <table>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Cidade</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="aluno in alunos">
+                    <td><input type="text" name="codigo" ng-disabled="true" ng-model="aluno.codigo" /></td>
+                    <td><input type="text" name="nome" ng-model="aluno.nome" /></td>
+                    <td><input type="text" name="cidade" ng-model="aluno.cidade" /></td>
+                    <td>
+                        <button ng-click="atualizar(aluno)">Atualizar</button>
+                    </td>
+                    <td>
+                        <button ng-click="excluir(aluno)">Excluir</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="codigo" ng-disabled="true" value="" /></td>
+                    <td><input type="text" name="nome" ng-model="novoAluno.nome" /></td>
+                    <td><input type="text" name="cidade" ng-model="novoAluno.cidade" /></td>
+                    <td>
+                        <button ng-click="adicionar(novoAluno)">Adicionar</button>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

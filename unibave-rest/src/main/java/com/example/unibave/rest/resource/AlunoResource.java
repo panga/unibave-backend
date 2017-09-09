@@ -24,7 +24,7 @@ public interface AlunoResource {
 
     @PUT
     @Path(value = "{codigo}")
-    Response atualiza(@PathParam(value = "codigo") Long codigo, Aluno aluno);
+    Response atualiza(@PathParam(value = "codigo") Long codigo, @Valid Aluno aluno);
 
     @GET
     @Path(value = "{codigo}")
