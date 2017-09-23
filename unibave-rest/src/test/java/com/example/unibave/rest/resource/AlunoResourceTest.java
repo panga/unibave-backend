@@ -91,6 +91,25 @@ public class AlunoResourceTest {
         assertThat(alunos.getContent().size()).isEqualTo(1);
     }
     
+    @Test
+    public void _05_deletaAluno() {
+        ResponseEntity<String> response = restTemplate
+                .exchange(BASE_URI + "/" + alunoCriado.getCodigo(),
+                        HttpMethod.DELETE, null, String.class);
+        assertThat(response.getStatusCode())
+                .isEqualTo(HttpStatus.NO_CONTENT);
+    }
+    
+    @Test
+    public void _06_buscaAlunoDeletado() {
+        ResponseEntity<Aluno> response = restTemplate
+                .exchange(BASE_URI + "/"
+                        + alunoCriado.getCodigo(),
+                        HttpMethod.GET, null, Aluno.class);
+        assertThat(response.getStatusCode())
+                .isEqualTo(HttpStatus.NOT_FOUND);
+    }
+     
     @Before
     public void rodaAntesDeCadaTeste() {
         System.out.println(">>>>>>> INICIANDO TESTE");
